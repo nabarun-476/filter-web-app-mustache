@@ -1,5 +1,8 @@
-function preload() {
+nose_x = 0;
+nose_y = 0;
 
+function preload() {
+    img_mustache = loadImage("https://i.postimg.cc/3x3QzSGq/m.png")
 }
 
 function setup() {
@@ -20,13 +23,14 @@ function modelLoaded() {
 function gotPoses(results) {
     if (results.length > 0) {
         console.log(results);
-        console.log("nose x =" + results[0].pose.nose.x);
-        console.log("nose y =" + results[0].pose.nose.y);
+        nose_x = results[0].pose.nose.x - 35;
+        nose_y = results[0].pose.nose.y - 5;
     }
 }
 
 function draw() {
-    image(video, 0, 0, 300, 300)
+    image(video, 0, 0, 300, 300);
+    image(img_mustache, nose_x, nose_y, 70, 50);
 }
 
 function take_snapshot() {
